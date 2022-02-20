@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { connect } from "react-redux"
+import { setInfo } from "../redux/actions/main"
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import Game from '../components/game'
@@ -6,7 +9,10 @@ import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
 
-export default function Home({ allPostsData }) {
+function Home(props) {
+    const { allPostsData } = props;
+    const { name, setInfo } = props;
+    const [newName, setName] = useState("");
     return (
         <Layout home>
             <Head>
@@ -35,6 +41,19 @@ export default function Home({ allPostsData }) {
                 <h2 className={utilStyles.headingLg}>Game by react docs</h2>
                 <Game />
             </section>
+            <section>
+                <h2 className={utilStyles.headingLg}>Adding redux</h2>
+                <p>Enter a Name {name}:</p>
+                <input
+                    type="text"
+                    value={newName}
+                    onChange={(e) => setName(e.target.value)}>
+
+                </input>
+                <button onClick={() => setInfo(newName)}>
+                    Submit
+                </button>
+            </section>
         </Layout>
     )
 }
@@ -47,3 +66,12 @@ export async function getStaticProps() {
         }
     }
 }
+
+const mapStateToProps = state => {
+    return { name: state.main.name }
+}
+
+const mapDispatchToProps = {
+    setInfo
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
