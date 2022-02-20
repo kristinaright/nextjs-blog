@@ -19,10 +19,10 @@ function Home(props) {
                 <title>{siteTitle}</title>
             </Head>
             <section className={utilStyles.headingMd}>
-                <p>hi! I`m Kris</p>
+                <p>hi! I`m Kris and I'm learning react</p>
             </section>
             <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-                <h2 className={utilStyles.headingLg}>Blog</h2>
+                <h2 className={utilStyles.headingLg}>1. Blog</h2>
                 <ul className={utilStyles.list}>
                     {allPostsData.map(({ id, date, title }) => (
                         <li className={utilStyles.listItem} key={id}>
@@ -38,11 +38,11 @@ function Home(props) {
                 </ul>
             </section>
             <section>
-                <h2 className={utilStyles.headingLg}>Game by react docs</h2>
+                <h2 className={utilStyles.headingLg}>2. Game by react docs</h2>
                 <Game />
             </section>
             <section>
-                <h2 className={utilStyles.headingLg}>Adding redux</h2>
+                <h2 className={utilStyles.headingLg}>3. Adding redux by <a href="https://dev.to/theallegrarr/adding-redux-to-next-js-app-4n5o">this link</a></h2>
                 <p>Enter a Name {name}:</p>
                 <input
                     type="text"
