@@ -5,15 +5,15 @@ import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
-export default function Post({
-                                 postData
-                             }: {
+interface PostTypes {
     postData: {
-        title: string
-        date: string
-        contentHtml: string
-    }
-}) {
+        title: string;
+        date: string;
+        contentHtml: string;
+    };
+};
+
+const Post: React.FC<PostTypes> = ({ postData }) => {
     return (
         <Layout>
             <Head>
@@ -46,3 +46,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         }
     }
 }
+
+export default Post;
