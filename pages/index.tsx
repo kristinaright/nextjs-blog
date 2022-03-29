@@ -2,9 +2,8 @@ import { useState } from 'react'
 import { connect } from "react-redux"
 import { setInfo } from "../redux/actions/main"
 import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
+import Layout, { siteTitle } from '../components/layout/layout'
 import Game from '../components/game'
-import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
@@ -22,19 +21,19 @@ const Home: React.FC<HomePropsTypes> = ({allPostsData, name, setInfo}) => {
             <Head>
                 <title>{siteTitle}</title>
             </Head>
-            <section className={utilStyles.headingMd}>
+            <section>
                 <p>hi! I`m Kris and I'm learning react</p>
             </section>
-            <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-                <h2 className={utilStyles.headingLg}>1. Blog</h2>
-                <ul className={utilStyles.list}>
+            <section>
+                <h2>1. Blog</h2>
+                <ul>
                     {allPostsData.map(({ id, date, title }) => (
-                        <li className={utilStyles.listItem} key={id}>
+                        <li key={id}>
                             <Link href={`/posts/${id}`}>
                                 <a>{title}</a>
                             </Link>
                             <br />
-                            <small className={utilStyles.lightText}>
+                            <small>
                                 <Date dateString={date} />
                             </small>
                         </li>
@@ -42,11 +41,11 @@ const Home: React.FC<HomePropsTypes> = ({allPostsData, name, setInfo}) => {
                 </ul>
             </section>
             <section>
-                <h2 className={utilStyles.headingLg}>2. Game by react docs</h2>
+                <h2>2. Game by react docs</h2>
                 <Game />
             </section>
             <section>
-                <h2 className={utilStyles.headingLg}>3. Adding redux by <a href="https://dev.to/theallegrarr/adding-redux-to-next-js-app-4n5o">this link</a></h2>
+                <h2>3. Adding redux by <a href="https://dev.to/theallegrarr/adding-redux-to-next-js-app-4n5o">this link</a></h2>
                 <p>Enter a Name {name}:</p>
                 <input
                     type="text"

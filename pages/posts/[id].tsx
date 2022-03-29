@@ -1,8 +1,8 @@
-import Layout from '../../components/layout'
+import Layout from '../../components/layout/layout'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 import Head from 'next/head'
 import Date from '../../components/date'
-import utilStyles from '../../styles/utils.module.css'
+import useStyles from '../../components/layoutStyles'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 interface PostTypes {
