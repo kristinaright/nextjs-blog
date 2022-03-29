@@ -2,7 +2,7 @@ import Layout from '../../components/layout/layout'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 import Head from 'next/head'
 import Date from '../../components/date'
-import useStyles from '../../components/layoutStyles'
+import useStyles from '../../components/layout/layoutStyles'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 interface PostTypes {
@@ -14,14 +14,15 @@ interface PostTypes {
 };
 
 const Post: React.FC<PostTypes> = ({ postData }) => {
+    const classes = useStyles();
     return (
         <Layout>
             <Head>
                 <title>{postData.title}</title>
             </Head>
             <article>
-                <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-                <div className={utilStyles.lightText}>
+                <h1 className={classes.headingXl}>{postData.title}</h1>
+                <div className={classes.lightText}>
                     <Date dateString={postData.date} />
                 </div>
                 <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
