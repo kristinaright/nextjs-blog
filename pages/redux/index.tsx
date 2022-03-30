@@ -5,12 +5,11 @@ import { setInfo } from "../../redux/actions/main"
 import { connect } from "react-redux"
 
 interface HomePropsTypes {
-    allPostsData: Array<any>;
     name: String;
     setInfo: Function;
 }
 
-const Redux: React.FC<HomePropsTypes> = ({allPostsData, name, setInfo}) => {
+const Redux: React.FC<HomePropsTypes> = ({name, setInfo}) => {
     const [newName, setName] = useState("");
 
     return (
@@ -34,7 +33,12 @@ const Redux: React.FC<HomePropsTypes> = ({allPostsData, name, setInfo}) => {
         </Layout>
     )
 }
-const mapDispatchToProps = dispatch => ({
-    setInfo: (val) => { dispatch(setInfo(val)); },
-  });
-export default connect(mapDispatchToProps)(Redux);
+const mapStateToProps = state => {
+    return { name: state.main.name }
+   }
+   
+   const mapDispatchToProps = {
+     setInfo
+   }
+   
+export default connect(mapStateToProps, mapDispatchToProps)(Redux)

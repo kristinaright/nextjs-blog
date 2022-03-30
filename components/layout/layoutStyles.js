@@ -2,14 +2,16 @@ import { createUseStyles } from 'react-jss';
 
 export default createUseStyles({
     container: {
-        maxWidth: '36rem',
+        width: '50rem',
         padding: '0 1rem',
         margin: '3rem auto 6rem'
     },
     header: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        '& $container': {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+        },
     },
     backToHome: {
         margin: '3rem 0 0',
@@ -23,5 +25,13 @@ export default createUseStyles({
     },
     lightText: {
         color: '#666',
+    },
+    nav: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    link: {
+        display: 'block',
+        padding: '4px 8px',
     }
 });

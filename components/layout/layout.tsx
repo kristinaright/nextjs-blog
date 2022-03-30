@@ -16,7 +16,7 @@ export default function Layout({
 
   const classes = useStyles();
     return (
-        <div className={classes.container}>
+        <div>
             <Head>
                 <link rel="icon" href="/favicon.ico" />
                 <meta
@@ -33,51 +33,47 @@ export default function Layout({
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <header className={classes.header}>
-                {home ? (
-                    <>
-                        <Image
-                            priority
-                            src="/images/profile.jpg"
-                            height={144}
-                            width={144}
-                            alt={name}
-                        />
-                        <h1>{name}</h1>
-                    </>
-                ) : (
-                    <>
-                        <Link href="/">
-                            <a>
-                                <Image
-                                    priority
-                                    src="/images/profile.jpg"
-                                    height={108}
-                                    width={108}
-                                    alt={name}
-                                />
-                            </a>
-                        </Link>
-                        <h2>
+                <div className={classes.container}>
+                    {home ? (
+                        <>
+                            <Image
+                                priority
+                                src="/images/profile.jpg"
+                                height={120}
+                                width={120}
+                                alt={name}
+                            />
+                        </>
+                    ) : (
+                        <>
                             <Link href="/">
-                                <a>{name}</a>
+                                <a>
+                                    <Image
+                                        priority
+                                        src="/images/profile.jpg"
+                                        height={108}
+                                        width={108}
+                                        alt={name}
+                                    />
+                                </a>
                             </Link>
-                        </h2>
-                    </>
-                )}
+                        </>
+                    )}
+
+                    <nav className={classes.nav}>
+                        <Link href={'/blog'}>
+                            <a className={classes.link}>Blog</a>
+                        </Link>
+                        <Link href={'/game'}>
+                            <a className={classes.link}>Game</a>
+                        </Link>
+                        <Link href={'/redux'}>
+                            <a className={classes.link}>Redux</a>
+                        </Link>
+                    </nav>
+                </div>
             </header>
-            <section>
-                <nav>
-                    <Link href={'/blog'}>
-                        <a>Blog</a>
-                    </Link>
-                    <Link href={'/game'}>
-                        <a>Game</a>
-                    </Link>
-                    <Link href={'/redux'}>
-                        <a>Redux</a>
-                    </Link>
-                </nav>
-            </section>
+            <div className={classes.container}>
             <main>{children}</main>
             {!home && (
                 <div className={classes.backToHome}>
@@ -86,6 +82,7 @@ export default function Layout({
                     </Link>
                 </div>
             )}
+            </div>
         </div>
     )
 }
