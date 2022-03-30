@@ -65,6 +65,19 @@ export default function Layout({
                     </>
                 )}
             </header>
+            <section>
+                <nav>
+                    <Link href={'/blog'}>
+                        <a>Blog</a>
+                    </Link>
+                    <Link href={'/game'}>
+                        <a>Game</a>
+                    </Link>
+                    <Link href={'/redux'}>
+                        <a>Redux</a>
+                    </Link>
+                </nav>
+            </section>
             <main>{children}</main>
             {!home && (
                 <div className={classes.backToHome}>

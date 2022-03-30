@@ -1,4 +1,4 @@
-import Square from '../components/square'
+import Square from '../square/square'
 import React from 'react';
 export default function Board(props) {
 

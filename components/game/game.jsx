@@ -1,4 +1,4 @@
-import Board from '../components/board'
+import Board from '../board/board'
 import React, { useState } from 'react';
 
 export default function Game() {
