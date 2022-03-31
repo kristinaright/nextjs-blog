@@ -6,3 +6,10 @@ export const setInfo = (name) => dispatch => {
         payload: name
     });
 }
+
+export const setPosts = (posts) => dispatch => {
+    dispatch({
+        type: t.SET_POSTS,
+        payload: posts
+    });
+}

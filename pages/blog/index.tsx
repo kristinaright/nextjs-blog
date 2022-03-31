@@ -1,16 +1,32 @@
+import { useState } from 'react'
 import Layout from '../../components/layout/layout'
 import Head from 'next/head'
 import Link from 'next/link'
-import Date from '../../components/date'
+import FormattedDate from '../../components/date'
+import FormInput from '../../components/formInput/FormInput'
+import FormButton from '../../components/formButton/formButton'
 import { getSortedPostsData } from '../../lib/posts'
-
+import { setPosts } from "../../redux/actions/main"
+import { connect, useDispatch } from "react-redux"
 interface HomePropsTypes {
     allPostsData: Array<any>;
     name: String;
     setInfo: Function;
 }
 
-const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
+const Blog: React.FC<HomePropsTypes>= ({setPosts, posts}) => {
+
+    console.log('posts', posts);
+
+    const [post, setPost] = useState({title: '', description: '', date: ''});
+    const addNewPost = (e) => {
+        e.preventDefault();
+
+        console.log('post', post);
+        setPosts([...posts, {...post, id: new Date(), date: new Date()}]);
+        console.log('allPostsData', posts);
+        setPost({title: '', description: '', date: ''});
+    };
     return (
         <Layout>
             <Head>
@@ -18,15 +34,30 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
             </Head>
             <section>
                 <h1>1. Blog</h1>
+                <form>
+                    <FormInput
+                    value={post.title}
+                    type="text"
+                    placeholder="Заголовок"
+                    onChange={e => setPost({...post, title: e.target.value})}
+                    ></FormInput>
+                    <FormInput
+                    value={post.description}
+                    type="text"
+                    placeholder="Описание"
+                    onChange={e => setPost({...post, description: e.target.value})}
+                    ></FormInput>
+                    <FormButton onClick={addNewPost}>Добавить новость</FormButton>
+                </form>
                 <ul>
-                    {allPostsData.map(({ id, date, title }) => (
+                    {posts.map(({ id, date, title }) => (
                         <li key={id}>
                             <Link href={`/posts/${id}`}>
                                 <a>{title}</a>
                             </Link>
                             <br />
                             <small>
-                                <Date dateString={date} />
+                                <FormattedDate dateString={date} />
                             </small>
                         </li>
                     ))}
@@ -36,13 +67,19 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
     )
 }
 
-export async function getStaticProps() {
-    const allPostsData = getSortedPostsData()
-    return {
-        props: {
-            allPostsData
-        }
-    }
-}
 
-export default Blog;
+const mapStateToProps = state => {
+
+    // const postsFromFile = getSortedPostsData();
+    // const dispatch = useDispatch();
+    // dispatch({type: 'SET_POSTS', payload: postsFromFile});
+    //TODO: куда засунуть присваивание в стор
+
+    return { posts: state.main.posts || [] }
+   }
+   
+   const mapDispatchToProps = {
+     setPosts
+   }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Blog)

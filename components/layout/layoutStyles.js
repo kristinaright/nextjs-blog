@@ -1,10 +1,14 @@
 import { createUseStyles } from 'react-jss';
 
 export default createUseStyles({
+    body: {
+        backgroundColor: '#f7edff',
+        height: '100vh',
+    },
     container: {
         width: '50rem',
-        padding: '0 1rem',
-        margin: '3rem auto 6rem'
+        padding: '1rem 1rem',
+        margin: '0 auto'
     },
     header: {
         '& $container': {

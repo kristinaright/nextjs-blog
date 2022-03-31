@@ -16,7 +16,7 @@ export default function Layout({
 
   const classes = useStyles();
     return (
-        <div>
+        <div className={classes.body}>
             <Head>
                 <link rel="icon" href="/favicon.ico" />
                 <meta
