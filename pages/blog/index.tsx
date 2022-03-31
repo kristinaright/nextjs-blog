@@ -14,17 +14,18 @@ interface HomePropsTypes {
     setInfo: Function;
 }
 
-const Blog: React.FC<HomePropsTypes>= ({setPosts, posts}) => {
+const Blog: React.FC<HomePropsTypes>= ({allPostsData, setPosts, posts}) => {
 
+    const [allPosts, setAllPosts] = useState([...allPostsData]);
     console.log('posts', posts);
-
     const [post, setPost] = useState({title: '', description: '', date: ''});
+
     const addNewPost = (e) => {
         e.preventDefault();
+        console.log('allPosts', allPosts);
+        console.log('post',  {...post, id: new Date(), date: '2021-02-21'});
 
-        console.log('post', post);
-        setPosts([...posts, {...post, id: new Date(), date: new Date()}]);
-        console.log('allPostsData', posts);
+        setAllPosts([...allPosts, {...post, id: new Date(), date: '2021-02-21'}]);
         setPost({title: '', description: '', date: ''});
     };
     return (
@@ -50,7 +51,7 @@ const Blog: React.FC<HomePropsTypes>= ({setPosts, posts}) => {
                     <FormButton onClick={addNewPost}>Добавить новость</FormButton>
                 </form>
                 <ul>
-                    {posts.map(({ id, date, title }) => (
+                    {allPosts.map(({ id, date, title }) => (
                         <li key={id}>
                             <Link href={`/posts/${id}`}>
                                 <a>{title}</a>
@@ -67,12 +68,16 @@ const Blog: React.FC<HomePropsTypes>= ({setPosts, posts}) => {
     )
 }
 
+export async function getStaticProps() {
+    const allPostsData = getSortedPostsData()
+    return {
+        props: {
+            allPostsData
+        }
+    }
+}
 
 const mapStateToProps = state => {
-
-    // const postsFromFile = getSortedPostsData();
-    // const dispatch = useDispatch();
-    // dispatch({type: 'SET_POSTS', payload: postsFromFile});
     //TODO: куда засунуть присваивание в стор
 
     return { posts: state.main.posts || [] }
