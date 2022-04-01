@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import Layout from '../../components/layout/layout'
 import Head from 'next/head'
-import Link from 'next/link'
-import FormattedDate from '../../components/date'
-import FormInput from '../../components/formInput/formInput'
-import FormButton from '../../components/formButton/formButton'
 import { getSortedPostsData } from '../../lib/posts'
 import { setPosts } from "../../redux/actions/main"
 import { connect, useDispatch } from "react-redux"
+import PostsList from '../../components/postsList/postsList'
+import PostsForm from '../../components/postsForm/postsForm'
 interface HomePropsTypes {
     allPostsData: Array<any>;
     name: String;
@@ -22,8 +20,14 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
     const addNewPost = (e) => {
         e.preventDefault();
 
-        setAllPosts([...allPosts, {...post, id: new Date(), date: '2021-02-21'}]);
+        setAllPosts([...allPosts, {...post, date: '2021-02-21'}]);
         setPost({title: '', description: '', date: ''});
+    };
+
+    const removePost = (post) => {
+        setAllPosts(allPosts.filter((currentPost) => {
+            return currentPost.title !== post.title
+        }));
     };
     return (
         <Layout>
@@ -32,34 +36,8 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
             </Head>
             <section>
                 <h1>1. Blog</h1>
-                <form>
-                    <FormInput
-                    value={post.title}
-                    type="text"
-                    placeholder="Заголовок"
-                    onChange={e => setPost({...post, title: e.target.value})}
-                    ></FormInput>
-                    <FormInput
-                    value={post.description}
-                    type="text"
-                    placeholder="Описание"
-                    onChange={e => setPost({...post, description: e.target.value})}
-                    ></FormInput>
-                    <FormButton onClick={addNewPost}>Добавить новость</FormButton>
-                </form>
-                <ul>
-                    {allPosts.map(({ id, date, title }) => (
-                        <li key={id}>
-                            <Link href={`/posts/${id}`}>
-                                <a>{title}</a>
-                            </Link>
-                            <br />
-                            <small>
-                                <FormattedDate dateString={date} />
-                            </small>
-                        </li>
-                    ))}
-                </ul>
+                <PostsForm post={post} setPost={setPost} addNewPost={addNewPost}></PostsForm>
+                <PostsList allPosts={allPosts} removePost={removePost}></PostsList>
             </section>
         </Layout>
     )

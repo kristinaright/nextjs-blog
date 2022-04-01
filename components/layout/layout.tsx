@@ -35,26 +35,12 @@ export default function Layout({
             <header className={classes.header}>
                 <div className={classes.container}>
                     {home ? (
-                        <>
-                            <Image
-                                priority
-                                src="/images/profile.jpg"
-                                height={120}
-                                width={120}
-                                alt={name}
-                            />
-                        </>
+                        <h2 className={classes.logo}>LOGO</h2>
                     ) : (
                         <>
                             <Link href="/">
                                 <a>
-                                    <Image
-                                        priority
-                                        src="/images/profile.jpg"
-                                        height={108}
-                                        width={108}
-                                        alt={name}
-                                    />
+                                   <h2 className={classes.logo}>LOGO</h2>
                                 </a>
                             </Link>
                         </>

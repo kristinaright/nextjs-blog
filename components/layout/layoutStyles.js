@@ -5,6 +5,10 @@ export default createUseStyles({
         backgroundColor: '#f7edff',
         height: '100vh',
     },
+    logo: {
+        display: 'block',
+        margin: 0,
+    },
     container: {
         width: '50rem',
         padding: '1rem 1rem',
