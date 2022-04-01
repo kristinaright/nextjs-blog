@@ -3,7 +3,7 @@ import Layout from '../../components/layout/layout'
 import Head from 'next/head'
 import Link from 'next/link'
 import FormattedDate from '../../components/date'
-import FormInput from '../../components/formInput/FormInput'
+import FormInput from '../../components/formInput/formInput'
 import FormButton from '../../components/formButton/formButton'
 import { getSortedPostsData } from '../../lib/posts'
 import { setPosts } from "../../redux/actions/main"
