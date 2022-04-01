@@ -14,16 +14,13 @@ interface HomePropsTypes {
     setInfo: Function;
 }
 
-const Blog: React.FC<HomePropsTypes>= ({allPostsData, setPosts, posts}) => {
+const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
 
     const [allPosts, setAllPosts] = useState([...allPostsData]);
-    console.log('posts', posts);
     const [post, setPost] = useState({title: '', description: '', date: ''});
 
     const addNewPost = (e) => {
         e.preventDefault();
-        console.log('allPosts', allPosts);
-        console.log('post',  {...post, id: new Date(), date: '2021-02-21'});
 
         setAllPosts([...allPosts, {...post, id: new Date(), date: '2021-02-21'}]);
         setPost({title: '', description: '', date: ''});
@@ -78,8 +75,6 @@ export async function getStaticProps() {
 }
 
 const mapStateToProps = state => {
-    //TODO: куда засунуть присваивание в стор
-
     return { posts: state.main.posts || [] }
    }
    
