@@ -2,17 +2,18 @@ import { createUseStyles } from 'react-jss';
 
 export default createUseStyles({
     square: {
-        background: '#fff',
-        border: '1px solid #999',
+        background: '#00808a',
+        border: '1px solid #ecefff',
         float: 'left',
-        fontSize: '24px',
+        fontSize: '64px',
         fontWeight: 'bold',
-        lineHeight: '34px',
-        height: '34px',
+        lineHeight: '120px',
+        height: '120px',
         marginRight: 0,
-        marginTop: 0,
+        marginTop: '-1px',
         padding: 0,
         textAlign: 'center',
-        width: '34px',
+        width: '120px',
+        color: '#ecefff'
     }
 });

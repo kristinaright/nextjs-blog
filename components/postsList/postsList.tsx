@@ -10,15 +10,17 @@ export default function PostsList({allPosts, removePost}) {
     return (
         <ul className={classes.list}>
             {allPosts.map((post, index) => (
-                <li key={index}>
-                    <Link href={`/posts/${post.id}`}>
-                        <a className={classes.title}>{post.title}</a>
-                    </Link>
-                    <br />
-                    <small>
-                        <FormattedDate dateString={post.date} />
-                    </small>
-                    <button onClick={() =>removePost(post)}>delete post</button>
+                <li className={classes.item} key={index}>
+                    <div>
+                        <Link href={`/posts/${post.id}`}>
+                            <a className={classes.title}>{post.title}</a>
+                        </Link>
+                        <br />
+                        <small className={classes.date}>
+                            <FormattedDate dateString={post.date} />
+                        </small>
+                    </div>
+                    <button className={classes.close} onClick={() =>removePost(post)}></button>
                 </li>
             ))}
         </ul>
