@@ -3,6 +3,8 @@ import Layout from '../../components/layout/layout'
 import Head from 'next/head'
 import { setInfo } from "../../redux/actions/main"
 import { connect } from "react-redux"
+import FormInput from '../../components/formInput/formInput'
+import FormButton from '../../components/formButton/formButton'
 
 interface HomePropsTypes {
     name: String;
@@ -11,7 +13,9 @@ interface HomePropsTypes {
 
 const Redux: React.FC<HomePropsTypes> = ({name, setInfo}) => {
     const [newName, setName] = useState("");
-
+    const submit = (e) => {
+        setInfo(newName);
+    };
     return (
         <Layout>
             <Head>
@@ -20,15 +24,14 @@ const Redux: React.FC<HomePropsTypes> = ({name, setInfo}) => {
             <section>
                 <h2>3. Adding redux by <a href="https://dev.to/theallegrarr/adding-redux-to-next-js-app-4n5o">this link</a></h2>
                 <p>Enter a Name {name}:</p>
-                <input
-                    type="text"
+                <FormInput
                     value={newName}
-                    onChange={(e) => setName(e.target.value)}>
-
-                </input>
-                <button onClick={() => setInfo(newName)}>
-                    Submit
-                </button>
+                    placeholder="text"
+                    onChange={e => setName(e.target.value)}
+                ></FormInput>
+                <FormButton
+                    onClick={submit}
+                >Submit</FormButton>
             </section>
         </Layout>
     )

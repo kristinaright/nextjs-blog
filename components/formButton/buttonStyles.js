@@ -9,5 +9,6 @@ export default createUseStyles({
         padding: '8px 16px',
         background: '#03b8c6',
         color: 'white',
+        cursor: 'pointer'
     }
 });
