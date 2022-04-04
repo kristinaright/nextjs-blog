@@ -1,10 +1,10 @@
 import React from 'react';
+import useStyles from './buttonStyles'
+
 export default function FormButton(props) {
 
-
+    const classes = useStyles();
     return (
-        <div>
-           <button {...props}></button>
-        </div>
+        <button className={classes.button} {...props}></button>
     );
 }

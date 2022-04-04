@@ -2,8 +2,11 @@ import { createUseStyles } from 'react-jss';
 
 export default createUseStyles({
     body: {
-        backgroundColor: '#f7edff',
+        backgroundColor: '#edeeff',
         height: '100vh',
+        '& a': {
+            color: '#00808a'
+        }
     },
     logo: {
         display: 'block',
