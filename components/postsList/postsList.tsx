@@ -16,6 +16,7 @@ export default function PostsList({allPosts, removePost}) {
                             <a className={classes.title}>{post.title}</a>
                         </Link>
                         <br />
+                        <div>{post.description}</div>
                         <small className={classes.date}>
                             <FormattedDate dateString={post.date} />
                         </small>
