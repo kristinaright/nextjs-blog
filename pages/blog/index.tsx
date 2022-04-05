@@ -34,6 +34,9 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
         }
         return allPosts;
     }, [selectedSorting, allPosts]);
+    const searchedAndSortedPosts = useMemo(() => {
+        return sortedPosts.filter(currentPost => currentPost.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    }, [searchQuery, sortedPosts]);
 
     // это те же methods
     const addNewPost = (e) => {
@@ -81,7 +84,13 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
                         ]}
                     ></FilterSelect>
                 </section>
-                <PostsList allPosts={sortedPosts} removePost={removePost}></PostsList>
+                {
+                    searchedAndSortedPosts.length
+                    ?
+                    <PostsList allPosts={searchedAndSortedPosts} removePost={removePost}></PostsList>
+                    :
+                    <div>посты не найдены</div>
+                }
             </section>
         </Layout>
     )
