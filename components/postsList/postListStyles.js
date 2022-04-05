@@ -7,10 +7,13 @@ export default createUseStyles({
         margin: 0,
     },
     item: {
-        marginBottom: '16px',
+        marginBottom: '20px',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        padding: '16px 20px',
+        boxShadow: '0 0 30px rgba(175, 177, 192, .3)',
+        borderRadius: '16px'
     },
     title: {
         fontSize: '28px'
