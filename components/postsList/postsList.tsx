@@ -7,7 +7,7 @@ export default function PostsList({allPosts, removePost}) {
 
     const classes = useStyles();
 
-    if(!allPosts.lenght) {
+    if(!allPosts.length) {
         return (
             <div>Посты не найдены</div>
         )
