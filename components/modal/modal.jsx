@@ -7,11 +7,16 @@ export default function Modal({children, visible, setVisible}) {
 
     const classes = useStyles();
     return (
-        <div className={clsx({
+        <div
+        onClick={()=> {setVisible(false)}}
+        className={clsx({
             [classes.modal]: true,
             [classes.active]: visible,
-          })}>
-            <div className={classes.content}>
+          })}
+        >
+            <div
+            onClick={(e)=> e.stopPropagation()}
+            className={classes.content}>
                 {children}
             </div>
         </div>
