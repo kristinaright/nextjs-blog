@@ -7,6 +7,8 @@ import { connect, useDispatch } from "react-redux"
 import PostsList from '../../components/postsList/postsList'
 import PostsForm from '../../components/postsForm/postsForm'
 import PostsFilters from '../../components/postsFilters/postsFilters'
+import Modal from '../../components/modal/modal'
+import FormButton from '../../components/formButton/formButton'
 interface HomePropsTypes {
     allPostsData: Array<any>;
     name: String;
@@ -20,6 +22,7 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
     const [allPosts, setAllPosts] = useState([...allPostsData]);
     const [post, setPost] = useState({title: '', description: '', date: ''});
     const [filter, setFilter] = useState({sort: '', query: ''});
+    const [modal, setModal] = useState(false);
 
 
     // хук useMemo как раз подобие computed во вью(вычисляемое выражение)
@@ -42,6 +45,7 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
 
         setAllPosts([...allPosts, {...post, date: '2021-02-21'}]);
         setPost({title: '', description: '', date: ''});
+        setModal(false);
     };
     const removePost = (post) => {
         setAllPosts(allPosts.filter((currentPost) => {
@@ -55,11 +59,19 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
                 <title>blog</title>
             </Head>
             <section>
-                <h2>1. Blog</h2>
-                <PostsForm post={post} setPost={setPost} addNewPost={addNewPost}></PostsForm>
+                <h2>
+                    1. Blog 
+                    <FormButton onClick={()=>{setModal(true)}}>Создать пост</FormButton>
+                </h2>
+                <Modal
+                    visible={modal}
+                    setVisible={setModal}
+                    >
+                    <PostsForm post={post} setPost={setPost} addNewPost={addNewPost}></PostsForm>
+                </Modal>
                 <PostsFilters
-                filter={filter}
-                setFilter={setFilter}></PostsFilters>
+                    filter={filter}
+                    setFilter={setFilter}></PostsFilters>
                 <PostsList allPosts={searchedAndSortedPosts} removePost={removePost}></PostsList>
             </section>
         </Layout>
