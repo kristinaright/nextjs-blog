@@ -7,6 +7,12 @@ export default function PostsList({allPosts, removePost}) {
 
     const classes = useStyles();
 
+    if(!allPosts.lenght) {
+        return (
+            <div>Посты не найдены</div>
+        )
+    }
+
     return (
         <ul className={classes.list}>
             {allPosts.map((post, index) => (
