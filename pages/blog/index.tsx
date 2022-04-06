@@ -6,8 +6,7 @@ import { setPosts } from "../../redux/actions/main"
 import { connect, useDispatch } from "react-redux"
 import PostsList from '../../components/postsList/postsList'
 import PostsForm from '../../components/postsForm/postsForm'
-import FilterSelect from '../../components/filterSelect/filterSelect'
-import FormInput from '../../components/formInput/formInput'
+import PostsFilters from '../../components/postsFilters/postsFilters'
 interface HomePropsTypes {
     allPostsData: Array<any>;
     name: String;
@@ -20,23 +19,22 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
     // только с дополнительными мутациями
     const [allPosts, setAllPosts] = useState([...allPostsData]);
     const [post, setPost] = useState({title: '', description: '', date: ''});
-    const [selectedSorting, setSelectedSorting] = useState('');
-    const [searchQuery, setSearchQuery] = useState('');
+    const [filter, setFilter] = useState({sort: '', query: ''});
 
 
     // хук useMemo как раз подобие computed во вью(вычисляемое выражение)
     // первый параметр - функция коллбэк,  второй параметр - массив зависимостей
     // вызывается только в случае, если хотя бы одна из зависимостей поменяется
     const sortedPosts = useMemo(() => {
-        if(selectedSorting) {
+        if(filter.sort) {
             console.log('allPosts', allPosts);
-            return [...allPosts].sort((last, current) => last[selectedSorting].localeCompare(current[selectedSorting]));
+            return [...allPosts].sort((last, current) => last[filter.sort].localeCompare(current[filter.sort]));
         }
         return allPosts;
-    }, [selectedSorting, allPosts]);
+    }, [filter.sort, allPosts]);
     const searchedAndSortedPosts = useMemo(() => {
-        return sortedPosts.filter(currentPost => currentPost.title.toLowerCase().includes(searchQuery.toLowerCase()))
-    }, [searchQuery, sortedPosts]);
+        return sortedPosts.filter(currentPost => currentPost.title.toLowerCase().includes(filter.query.toLowerCase()))
+    }, [filter.query, sortedPosts]);
 
     // это те же methods
     const addNewPost = (e) => {
@@ -50,9 +48,6 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
             return currentPost.title !== post.title
         }));
     };
-    const sortPosts = (sort) => {
-        setSelectedSorting(sort);
-    };
 
     return (
         <Layout>
@@ -62,35 +57,10 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
             <section>
                 <h2>1. Blog</h2>
                 <PostsForm post={post} setPost={setPost} addNewPost={addNewPost}></PostsForm>
-                <section>
-                    <FormInput
-                        value={searchQuery}
-                        placeholder="поиск"
-                        onChange={e => setSearchQuery(e.target.value)}
-                    ></FormInput>
-                    <FilterSelect
-                        value={selectedSorting}
-                        onChange={sortPosts}
-                        defaultValue="Сортировка"
-                        options={[
-                            {
-                                value: 'title',
-                                name: 'По названию'
-                            },
-                            {
-                                value: 'description',
-                                name: 'По описанию'
-                            },
-                        ]}
-                    ></FilterSelect>
-                </section>
-                {
-                    searchedAndSortedPosts.length
-                    ?
-                    <PostsList allPosts={searchedAndSortedPosts} removePost={removePost}></PostsList>
-                    :
-                    <div>посты не найдены</div>
-                }
+                <PostsFilters
+                filter={filter}
+                setFilter={setFilter}></PostsFilters>
+                <PostsList allPosts={searchedAndSortedPosts} removePost={removePost}></PostsList>
             </section>
         </Layout>
     )
