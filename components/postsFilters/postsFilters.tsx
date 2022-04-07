@@ -17,7 +17,7 @@ const PostsFilters: React.FC<PostsFiltersProps> = ({
             <FormInput
                 value={filter.query}
                 placeholder="поиск"
-                onChange={e => setFilter({...filter, query: e.target.value})}
+                onChange={(e: React.FormEvent<HTMLInputElement>) => setFilter({...filter, query: e.currentTarget.value})}
             ></FormInput>
             <FilterSelect
                 value={filter.sort}
