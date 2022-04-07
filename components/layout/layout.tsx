@@ -5,14 +5,15 @@ import Link from 'next/link'
 
 const name = 'Kris'
 export const siteTitle = 'Next.js Sample Website'
+interface LayoutProps {
+    children: React.ReactNode;
+    home?: boolean;
+  };
 
-export default function Layout({
-                                   children,
-                                   home
-                               }: {
-    children: React.ReactNode
-    home?: boolean
-}) {
+const Layout: React.FC<LayoutProps> = ({
+        children,
+        home
+    }) => {
 
   const classes = useStyles();
     return (
@@ -72,3 +73,5 @@ export default function Layout({
         </div>
     )
 }
+
+export default Layout;

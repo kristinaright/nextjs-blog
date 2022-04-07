@@ -3,10 +3,15 @@ import { createUseStyles } from 'react-jss';
 export default createUseStyles({
     body: {
         backgroundColor: '#edeeff',
-        height: '100vh',
+        minHeight: '100vh',
         '& a': {
             color: '#00808a'
-        }
+        },
+        '& .nested': {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between', 
+        },
     },
     logo: {
         display: 'block',

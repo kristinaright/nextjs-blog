@@ -3,7 +3,15 @@ import Link from 'next/link'
 import FormattedDate from '../../components/date';
 import useStyles from './postListStyles';
 
-export default function PostsList({allPosts, removePost}) {
+interface PostsListProps {
+    allPosts?: Array<any>;
+    removePost: () => void;
+  };
+
+const PostsList: React.FC = ({
+    allPosts,
+    removePost
+}) => {
 
     const classes = useStyles();
 
@@ -32,4 +40,6 @@ export default function PostsList({allPosts, removePost}) {
             ))}
         </ul>
     );
-}
+};
+
+export default PostsList;

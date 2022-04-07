@@ -1,11 +1,17 @@
 import Square from '../square/square'
 import React from 'react';
-export default function Board(props) {
+
+export interface BoardProps {
+    squares?: Array<string>;
+    onClick: (params: number) => void;
+  };
+
+const Board: React.FC<BoardProps> = ({squares, onClick})=> {
 
     const renderSquare = (i) => {
         return <Square
-            value={props.squares[i]}
-            onClick={() => props.onClick(i)}
+            value={squares[i]}
+            onClick={() => onClick(i)}
         />;
     }
 
@@ -29,3 +35,5 @@ export default function Board(props) {
         </div>
     );
 }
+
+export default Board;

@@ -2,9 +2,17 @@ import React from 'react';
 import useStyles from './modalStyles'
 import clsx from 'clsx';
 
-export default function Modal({children, visible, setVisible}) {
-    console.log('visible', visible);
+interface ModalProps {
+    children: any;
+    visible: boolean;
+    setVisible: (params: boolean) => void;
+};
 
+const Modal: React.FC<ModalProps> = ({
+    children,
+    visible,
+    setVisible
+}) => {
     const classes = useStyles();
     return (
         <div
@@ -21,4 +29,6 @@ export default function Modal({children, visible, setVisible}) {
             </div>
         </div>
     );
-}
+};
+
+export default Modal;
