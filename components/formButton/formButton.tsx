@@ -1,7 +1,16 @@
 import React from 'react';
 import useStyles from './buttonStyles'
 
-const FormButton: React.FC = (props) => {
+interface IFormButtonProps {
+    disabled?: boolean;
+    fullWidth?: boolean;
+    type?: 'reset' | 'button' | 'submit';
+    children: React.ReactNode;
+    isLoading?: boolean;
+    onClick?(e: React.FormEvent<HTMLElement>): void;
+  }
+
+const FormButton: React.FC<IFormButtonProps> = (props) => {
 
     const classes = useStyles();
     return (

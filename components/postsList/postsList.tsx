@@ -5,10 +5,10 @@ import useStyles from './postListStyles';
 
 interface PostsListProps {
     allPosts?: Array<any>;
-    removePost: () => void;
+    removePost: (params: any) => void;
   };
 
-const PostsList: React.FC = ({
+const PostsList: React.FC<PostsListProps> = ({
     allPosts,
     removePost
 }) => {

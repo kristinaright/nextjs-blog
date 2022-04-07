@@ -53,6 +53,10 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
         }));
     };
 
+    const closeModal = (post) => {
+        setModal(true);
+    };
+
     return (
         <Layout>
             <Head>
@@ -61,7 +65,7 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
             <section>
                 <h2 className='nested'>
                     1. Blog 
-                    <FormButton onClick={()=>{setModal(true)}}>Создать пост</FormButton>
+                    <FormButton onClick={closeModal}>Создать пост</FormButton>
                 </h2>
                 <Modal
                     visible={modal}

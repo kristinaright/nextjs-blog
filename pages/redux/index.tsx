@@ -27,7 +27,7 @@ const Redux: React.FC<HomePropsTypes> = ({name, setInfo}) => {
                 <FormInput
                     value={newName}
                     placeholder="text"
-                    onChange={e => setName(e.target.value)}
+                    onChange={(e: React.FormEvent<HTMLInputElement>) => setName(e.currentTarget.value)}
                 ></FormInput>
                 <FormButton
                     onClick={submit}
