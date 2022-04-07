@@ -1,19 +1,18 @@
 import React from 'react';
 import useStyles from './inputStyles'
 
-interface FormInputProps {
-    value: string;
-    children?: any;
-  };
+interface FormInputProps extends React.HTMLProps<HTMLInputElement> {
+    onChange?(e: React.FormEvent<HTMLElement>): void;
+}
 
 const FormInput: React.FC<FormInputProps> = ({
     value,
-    children
+    ...rest
 }) => {
 
     const classes = useStyles();
     return (
-        <input className={classes.input} value={value} {...children}/>
+        <input className={classes.input} value={value} {...rest}/>
     )
 };
 
