@@ -3,10 +3,7 @@ import useStyles from './buttonStyles'
 
 interface IFormButtonProps {
     disabled?: boolean;
-    fullWidth?: boolean;
-    type?: 'reset' | 'button' | 'submit';
     children: React.ReactNode;
-    isLoading?: boolean;
     onClick?(e: React.FormEvent<HTMLElement>): void;
   }
 
