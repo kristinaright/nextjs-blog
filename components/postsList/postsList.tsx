@@ -1,7 +1,7 @@
 import React from 'react';
-import Link from 'next/link'
-import FormattedDate from '../../components/date';
 import useStyles from './postListStyles';
+import PostItem from '../postItem/postItem';
+import {CSSTransition,TransitionGroup} from 'react-transition-group';
 
 interface PostsListProps {
     allPosts?: Array<any>;
@@ -23,21 +23,17 @@ const PostsList: React.FC<PostsListProps> = ({
 
     return (
         <ul className={classes.list}>
-            {allPosts.map((post, index) => (
-                <li className={classes.item} key={index}>
-                    <div>
-                        <Link href={`/posts/${post.id}`}>
-                            <a className={classes.title}>{post.title}</a>
-                        </Link>
-                        <br />
-                        <div>{post.description}</div>
-                        <small className={classes.date}>
-                            <FormattedDate dateString={post.date} />
-                        </small>
-                    </div>
-                    <button className={classes.close} onClick={() =>removePost(post)}></button>
-                </li>
-            ))}
+            <TransitionGroup>
+                {allPosts.map((post, index) => (
+                    <CSSTransition
+                        key={index}
+                        timeout={500}
+                        className='post'
+                    >
+                        <PostItem remove={removePost} post={post}></PostItem>
+                    </CSSTransition>
+                ))}
+            </TransitionGroup>
         </ul>
     );
 };

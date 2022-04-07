@@ -6,12 +6,13 @@ interface IFormButtonProps {
     children: React.ReactNode;
     onClick?(e: React.FormEvent<HTMLElement>): void;
   }
+ //interface IFormButtonProps extends React.HTMLProps<HTMLButtonElement> {}
 
-const FormButton: React.FC<IFormButtonProps> = (props) => {
+const FormButton: React.FC<IFormButtonProps> = ({children, ...rest}) => {
 
     const classes = useStyles();
     return (
-        <button className={classes.button} {...props}></button>
+        <button className={classes.button} {...rest}>{children}</button>
     );
 }
 
