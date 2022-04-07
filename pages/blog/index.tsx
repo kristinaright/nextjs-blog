@@ -59,7 +59,7 @@ const Blog: React.FC<HomePropsTypes>= ({allPostsData}) => {
                 <title>blog</title>
             </Head>
             <section>
-                <h2>
+                <h2 className='nested'>
                     1. Blog 
                     <FormButton onClick={()=>{setModal(true)}}>Создать пост</FormButton>
                 </h2>

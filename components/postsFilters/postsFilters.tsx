@@ -1,9 +1,16 @@
 import React from 'react';
-import FilterSelect from '../../components/filterSelect/filterSelect'
-import FormInput from '../../components/formInput/formInput'
+import FilterSelect from '../filterSelect/filterSelect'
+import FormInput from '../formInput/formInput'
 
-export default function PostsFilters({filter, setFilter}) {
+interface PostsFiltersProps {
+    filter: any;
+    setFilter: (params: any) => void;
+  };
 
+const PostsFilters: React.FC<PostsFiltersProps> = ({
+    filter,
+    setFilter
+}) => {
 
     return (
         <section>
@@ -29,4 +36,6 @@ export default function PostsFilters({filter, setFilter}) {
             ></FilterSelect>
         </section>
     );
-}
+};
+
+export default PostsFilters;

@@ -1,7 +1,17 @@
 import React from 'react';
+export interface FilterSelectProps {
+    options: Array<any>;
+    defaultValue: string;
+    value: string;
+    onChange: (params: string) => void;
+  };
 
-export default function FilterSelect({options, defaultValue, value, onChange}) {
-
+const FilterSelect: React.FC<FilterSelectProps> = ({
+    options,
+    defaultValue,
+    value,
+    onChange
+}) => {
     return (
         <select
             value={value}
@@ -9,10 +19,16 @@ export default function FilterSelect({options, defaultValue, value, onChange}) {
         >
             <option disabled>{defaultValue}</option>
             {
-                options.map(option=>
-                    <option value={option.value} key={option.value}>{option.name}</option>
+                options.map(optionItem=>
+                    <option
+                    value={optionItem.value}
+                    key={optionItem.value}
+                    >
+                        {optionItem.name}
+                    </option>
                 )
             }
         </select>
     );
 }
+export default FilterSelect;

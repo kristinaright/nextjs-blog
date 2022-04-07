@@ -1,7 +1,7 @@
 import Board from '../board/board'
 import React, { useState } from 'react';
 
-export default function Game() {
+const Game: React.FC = () => {
     const handleClick = (i) => {
         const updatedHistory = history.slice(0, stepNumber + 1);
         const updatedCurrent = updatedHistory[updatedHistory.length - 1];
@@ -86,3 +86,5 @@ export default function Game() {
         </div>
     );
 }
+
+export default Game;

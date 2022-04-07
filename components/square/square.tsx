@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import useStyles from './squareStyles'
 
-export default function Square(props) {
+interface SquareProps {
+    value?: string;
+    onClick: () => void;
+  };
+
+const Square: React.FC<SquareProps> = (props) => {
 
     const classes = useStyles();
     return (
@@ -12,4 +17,6 @@ export default function Square(props) {
             {props.value}
         </button>
     )
-}
+};
+
+export default Square;

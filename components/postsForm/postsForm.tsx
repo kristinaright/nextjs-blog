@@ -2,8 +2,13 @@ import React from 'react';
 import FormInput from '../../components/formInput/formInput'
 import FormButton from '../../components/formButton/formButton'
 import useStyles from './postsFormStyles';
+interface PostsFormProps {
+    post: any;
+    setPost: (params: any) => void;
+    addNewPost: () => void;
+  };
 
-export default function PostsForm({post, setPost, addNewPost}) {
+const PostsForm: React.FC<PostsFormProps> = ({post, setPost, addNewPost}) => {
 
     const classes = useStyles();
     return (
@@ -26,4 +31,5 @@ export default function PostsForm({post, setPost, addNewPost}) {
             </FormButton>
         </form>
     );
-}
+};
+export default PostsForm;
